@@ -1,0 +1,31 @@
+<%= form_for @presentation do |f| %>
+  <%= render 'errors' %>
+
+  <p>
+    <%= f.label :subject %><br>
+    <%= f.text_field :subject %>
+  </p>
+
+  <p>
+    <%= f.label :content %><br>
+    <%= f.text_field :content %>
+  </p>
+
+  <p>
+    <%= f.label :date %><br>
+    <%= f.date_field :date %>
+  </p>
+
+  <p>
+    <%= f.label :person %><br>
+    <%= f.select :people, 
+                 Person.all.collect { |p| [ p.first_name, p.id ] }, 
+                 { :include_blank => "-" },
+                 { :multiple => true, :size => 5 } %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>

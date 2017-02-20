@@ -1,0 +1,13 @@
+<% if @presentation.errors.any? %>
+  <div class="error-explanation">
+    <h2 class="error-explanation__header">
+      <%= pluralize(@presentation.errors.count, "error") %>
+      Prohibited this person from being created
+    </h2>
+    <ul>
+      <% @presentation.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
