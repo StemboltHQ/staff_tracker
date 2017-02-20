@@ -1,6 +1,4 @@
 class Person < ApplicationRecord
-  has_one :staff
-
   has_many :person_presentations
   has_many :presentations, through: :person_presentations
 
