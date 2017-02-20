@@ -1,0 +1,14 @@
+<dl>
+  <dt>Title</dt>
+  <dd><%= @presentation.title %></dd>
+
+  <dt>Date of Presentation</dt>
+  <dd><%= @presentation.date_of_presentation %></dd>
+
+  <dt>Content</dt>
+  <dd><%= @presentation.content %></dd>
+
+</dl>
+
+<%= link_to 'Edit', edit_presentation_path(@presentation) %> |
+<%= link_to 'Back', presentations_path %>

@@ -1,0 +1,35 @@
+<h1>Presentations</h1>
+
+<%= link_to 'New Presentation', new_presentation_path %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Presented By</th>
+      <th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @presentations.each do |presentation| %>
+      <tr>
+        <td><%= presentation.title %></td>
+        <td>
+          <%= presentation.people.each do |person| %>
+          <%= person %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to 'Show', presentation_path(presentation) %>
+          <%= link_to 'Edit', edit_presentation_path(presentation) %>
+          <%= link_to 'Delete', presentation_path(presentation),
+                      method: :delete,
+                      data: { confirm: 'Are you sure?' } %>
+
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Back', root_path %>
