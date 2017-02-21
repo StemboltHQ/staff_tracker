@@ -1,0 +1,39 @@
+AllCops:
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'Gemfile*'
+    - 'bin/**/*'
+    - 'test/**/*'
+    - 'Rakefile'
+    - 'spec/spec_helper.rb'
+    - 'spec/rails_helper.rb'
+    - 'vendor/**/*'
+    - 'Guardfile'
+
+Rails:
+  Enabled: true
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/StringLiterals:
+  Enabled: false
+
+Style/EmptyMethod:
+  Enabled: false
+
+Metrics/BlockLength:
+  ExcludedMethods:
+    - 'describe'
+    - 'context'
+    - 'define'
+    - 'trait'
+    - 'factory'
+
+Metrics/LineLength:
+  IgnoredPatterns:
+    - '\w*it.+do'
