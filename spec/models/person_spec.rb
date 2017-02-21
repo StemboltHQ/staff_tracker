@@ -13,14 +13,6 @@ RSpec.describe Person, type: :model do
     )
   }
 
-  let!(:staff) {
-    Staff.new(
-      :pod => 1,
-      :started_at_company => Date.new(2017,02,01),
-      :person => subject
-    )
-  }
-
   describe "validations" do
     it "expects valid attributes" do
       expect(subject).to be_valid
