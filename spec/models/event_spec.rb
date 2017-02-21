@@ -29,4 +29,26 @@ RSpec.describe Event, type: :model do
       it { is_expected.to_not be_valid }
     end
   end
+
+  describe '.notification_necessary?' do
+    context 'when the date of the event is within the notif period' do
+      let(:required_notif) do
+        FactoryGirl.create(:event, date: Date.today)
+      end
+      it 'returns true' do
+        expect(required_notif.notification_necessary?).to eq(true)
+      end
+    end
+
+    context 'when the date of the event is outside the notif period' do
+      let(:unrequired_notif) do
+        FactoryGirl.create(
+          :event, date: Date.today + Event::NOTIFICATION_PERIOD
+        )
+      end
+      it 'returns false' do
+        expect(unrequired_notif.notification_necessary?).to eq(false)
+      end
+    end
+  end
 end
