@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :people, :staff
+  resources :people
 
   root 'welcome#index'
 end
