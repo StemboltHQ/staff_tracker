@@ -1,17 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe Person, type: :model do
-  subject {
+  subject do
     described_class.new(
       first_name: 'Gregory',
       last_name: 'Daynes',
       email: 'greg@stembolt.com',
       password: 'abc123',
       password_confirmation: 'abc123',
-      date_of_birth: Date.new(1986,11,04),
+      date_of_birth: Date.new(1986, 11, 4),
       gender: 'Male'
     )
-  }
+  end
 
   describe "validations" do
     it "expects valid attributes" do

@@ -30,6 +30,9 @@ Metrics/BlockLength:
   ExcludedMethods:
     - 'describe'
     - 'context'
+    - 'define'
+    - 'trait'
+    - 'factory'
 
 Metrics/LineLength:
   IgnoredPatterns:
