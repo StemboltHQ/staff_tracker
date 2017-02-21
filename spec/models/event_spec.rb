@@ -2,34 +2,31 @@
 require 'rails_helper'
 
 RSpec.describe Event, type: :model do
-  describe 'valid attributes' do 
-    describe 'name' do
-      subject { FactoryGirl.create(:event, name: 'Show & Tell') }
+  subject { described_class.new(event) }
 
-      it "expects name to be a string" do
-        expect(subject).to be_valid
-      end
+  describe 'valid model' do
+    let(:event) { FactoryGirl.attributes_for(:event) }
+    it { is_expected.to be_valid }
+  end
+
+  describe 'name' do
+    context 'when nil' do
+      let(:event) { FactoryGirl.attributes_for(:event, name: nil) }
+      it { is_expected.to_not be_valid }
     end
   end
 
-  describe 'invalid name' do
-    it "expects name" do
-      subject { FactoryGirl.create(:event, name: nil) }
-      expect(subject).to_not be_valid
+  describe 'date' do
+    context 'when nil' do
+      let(:event) { FactoryGirl.attributes_for(:event, date: nil) }
+      it { is_expected.to_not be_valid }
     end
   end
 
-  describe 'invalid date' do
-    it "expects date" do
-      subject { FactoryGirl.create(:event, date: nil) }
-      expect(subject).to_not be_valid
-    end
-  end
-
-  describe 'invalid location' do
-    it "expects location" do
-      subject { FactoryGirl.create(:event, location: nil) }
-      expect(subject).to_not be_valid
+  describe 'location' do
+    context 'when nil' do
+      let(:event) { FactoryGirl.attributes_for(:event, location: nil) }
+      it { is_expected.to_not be_valid }
     end
   end
 end
