@@ -1,0 +1,23 @@
+<%= form_for @event do |f| %>
+  <%= render 'errors' %>
+
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label :location %><br>
+    <%= f.text_field :location %>
+  </p>
+
+  <p>
+    <%= f.label :date %><br>
+    <%= f.date_field :date %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>
