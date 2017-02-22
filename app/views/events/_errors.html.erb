@@ -1,0 +1,13 @@
+<% if @event.errors.any? %>
+  <div class="error-explanation">
+    <h2 class="error-explanation__header">
+      <%= pluralize(@event.errors.count, "error") %>
+      Prohibited this event from being created
+    </h2>
+    <ul>
+      <% @event.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
