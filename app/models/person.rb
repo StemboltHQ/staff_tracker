@@ -1,6 +1,5 @@
 class Person < ApplicationRecord
-  has_many :person_presentations
-  has_many :presentations, through: :person_presentations
+  has_many :presentations
 
   before_save do
     email.downcase!
