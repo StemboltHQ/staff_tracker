@@ -13,9 +13,12 @@ FactoryGirl.define do
   end
 
   factory :presentation do
-    title 'Test Presentation'
-    content 'Lorem ipsum dolor'
-    date_of_presentation Date.new(2017, 2, 18)
+    presenter 'Testy McTesterson'
+    topic 'Being Awesome'
+    description 'How to be awesome and stuff'
+    duration 900
+    person
+    event
   end
 
   factory :event do
