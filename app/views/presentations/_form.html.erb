@@ -1,0 +1,35 @@
+<%= form_for @presentation do |f| %>
+  <%= render 'errors' %>
+
+  <p>
+    <%= f.label :topic %><br>
+    <%= f.text_field :topic %>
+  </p>
+
+  <p>
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </p>
+
+  <p>
+    <%= f.label :duration %><br>
+    <%= f.text_field :duration %> Seconds
+  </p>
+
+  <p>
+    <%= f.label :event %><br>
+    <%= collection_select(:presentation, :event_id, Event.all, :id, :name, prompt: true) %>
+  </p>
+
+  <p>
+    <%= f.label :presenter %><br>
+    <%= collection_select(:presentation, :person_id, Event.all, :id, :name, include_blank: true) %>
+    or
+    <%= f.text_field :presenter, placeholder: 'Enter guest name' %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>
