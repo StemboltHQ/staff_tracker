@@ -3,7 +3,7 @@ class Presentation < ApplicationRecord
   belongs_to :event
 
   validates :topic,     presence: true
-  validates :duration,  presence: true
+  validates :duration,  presence: true, numericality: true
   validates :person,    presence: true, unless: :presenter
   validates :presenter, presence: true, unless: :person
   validates :event,     presence: true
