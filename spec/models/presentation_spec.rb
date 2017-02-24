@@ -10,6 +10,7 @@ RSpec.describe Presentation, type: :model do
 
     it { is_expected.to validate_presence_of :topic }
     it { is_expected.to validate_presence_of :duration }
+    it { is_expected.to validate_numericality_of :duration }
 
     it { is_expected.to belong_to :person }
     it { is_expected.to belong_to :event }

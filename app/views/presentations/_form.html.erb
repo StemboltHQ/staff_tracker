@@ -13,7 +13,7 @@
 
   <p>
     <%= f.label :duration %><br>
-    <%= f.text_field :duration %> Seconds
+    <%= f.text_field :duration %> Minutes
   </p>
 
   <p>
@@ -23,7 +23,7 @@
 
   <p>
     <%= f.label :presenter %><br>
-    <%= collection_select(:presentation, :person_id, Event.all, :id, :name, include_blank: true) %>
+    <%= collection_select(:presentation, :person_id, Person.all, :id, :first_name, include_blank: true) %>
     or
     <%= f.text_field :presenter, placeholder: 'Enter guest name' %>
   </p>
