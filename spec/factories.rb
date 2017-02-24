@@ -3,9 +3,7 @@ FactoryGirl.define do
   factory :person do
     first_name 'John'
     last_name 'Doe'
-    sequence :email do |n|
-      "john.doe.#{n}@example.com"
-    end
+    email "john.doe#{Random.rand(1000)}@example.com"
     password 'abc123'
     password_confirmation 'abc123'
     date_of_birth Date.new(1970, 1, 1)
@@ -13,9 +11,11 @@ FactoryGirl.define do
   end
 
   factory :presentation do
-    title 'Test Presentation'
-    content 'Lorem ipsum dolor'
-    date_of_presentation Date.new(2017, 2, 18)
+    topic 'Being Awesome'
+    description 'How to be awesome and stuff'
+    duration 900
+    person
+    event
   end
 
   factory :event do
