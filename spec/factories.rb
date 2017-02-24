@@ -23,4 +23,8 @@ FactoryGirl.define do
     location 'Board Room'
     date Date.new(2017, 2, 24)
   end
+
+  factory :role do
+    name 'Admin'
+  end
 end
