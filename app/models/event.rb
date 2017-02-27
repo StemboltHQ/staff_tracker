@@ -8,4 +8,6 @@ class Event < ApplicationRecord
             presence: true
   validates :name,
             presence: true
+
+  scope :upcoming, -> { where('date >= ?', Time.zone.today) }
 end
