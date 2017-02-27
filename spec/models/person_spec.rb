@@ -12,6 +12,9 @@ RSpec.describe Person, type: :model do
     it { is_expected.to have_secure_password }
     it { is_expected.to be_valid }
 
+    it { is_expected.to have_many :person_roles }
+    it { is_expected.to have_many(:roles).through(:person_roles) }
+
     it "expects first_name to be longer than 1 character" do
       subject.first_name = "A"
       expect(subject).to_not be_valid

@@ -1,6 +1,9 @@
 class Person < ApplicationRecord
   has_many :presentations
 
+  has_many :person_roles
+  has_many :roles, through: :person_roles
+
   before_save do
     email.downcase!
     gender.downcase!
