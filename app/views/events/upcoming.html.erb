@@ -1,0 +1,30 @@
+<h1>Upcoming Events</h1>
+
+<% @events.each do |event| %>
+  <div>
+    <h2><%= link_to event.name, event_path(event) %></h2>
+
+    <ul>
+      <li>Location: <%= event.location %></li>
+      <li>Date: <%= event.date %></li>
+      <% if event.presentations.present? %>
+        <li>Presentations
+          <ul>
+            <% event.presentations.each do |presentation| %>
+              <li>
+                <dl>
+                  <dt>Topic</dt>
+                  <dd><%= presentation.topic %></dd>
+
+                  <dt>Presenter</dt>
+                  <dd><%= presentation.presenter_name %></dd>
+                </dl>
+              </li>
+            <% end %>
+          </ul> 
+        </li>
+      <% end %>
+    </ul>
+
+  </div>
+<% end %>

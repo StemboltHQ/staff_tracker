@@ -8,6 +8,10 @@ class EventsController < ApplicationController
     @event = Event.new
   end
 
+  def upcoming
+    @events = Event.upcoming
+  end
+
   def create
     @event = Event.new(event_params)
 

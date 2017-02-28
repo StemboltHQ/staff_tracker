@@ -41,4 +41,20 @@ RSpec.describe Event, type: :model do
       it { is_expected.to_not be_valid }
     end
   end
+
+  describe 'scope: upcoming' do
+    subject { described_class.upcoming }
+
+    let!(:event_past) { FactoryGirl.create(:event, date: Time.zone.yesterday) }
+    let!(:event_present) { FactoryGirl.create(:event, date: Time.zone.today) }
+    let!(:event_future) { FactoryGirl.create(:event, date: Time.zone.tomorrow) }
+
+    context 'future events' do
+      it { is_expected.to include(event_present, event_future) }
+    end
+
+    context 'past events' do
+      it { is_expected.to_not include(event_past) }
+    end
+  end
 end
