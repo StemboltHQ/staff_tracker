@@ -52,4 +52,12 @@ RSpec.describe PresentationsController, type: :controller do
       end
     end
   end
+
+  describe 'GET #edit' do
+    subject { get :edit, params: { id: presentation.id } }
+    let!(:presentation) { FactoryGirl.create(:presentation) }
+
+    it { is_expected.to render_template :edit }
+    it { is_expected.to be_successful }
+  end
 end
