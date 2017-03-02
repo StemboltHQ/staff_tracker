@@ -37,6 +37,12 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'bootstrap', '~> 4.0.0.alpha6'
 
+# Use Google oauth for authorization
+gem 'omniauth-google-oauth2', '~> 0.2.1'
+
+# Use Figaro for secure configuration
+gem 'figaro'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

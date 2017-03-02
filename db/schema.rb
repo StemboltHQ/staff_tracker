@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170221232041) do
+ActiveRecord::Schema.define(version: 20170223213553) do
 
   create_table "events", force: :cascade do |t|
     t.date     "date",       null: false
@@ -29,6 +29,10 @@ ActiveRecord::Schema.define(version: 20170221232041) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "password_digest"
+    t.string   "oauth_token"
+    t.datetime "oauth_expires_at"
+    t.string   "uid"
+    t.string   "provider"
     t.index ["email"], name: "index_people_on_email", unique: true
   end
 

@@ -6,8 +6,6 @@ RSpec.describe Person, type: :model do
   describe 'validations' do
     it { is_expected.to validate_presence_of :first_name }
     it { is_expected.to validate_presence_of :email }
-    it { is_expected.to validate_presence_of :date_of_birth }
-    it { is_expected.to validate_presence_of :gender }
     it { is_expected.to validate_uniqueness_of(:email).case_insensitive }
     it { is_expected.to have_secure_password }
     it { is_expected.to be_valid }

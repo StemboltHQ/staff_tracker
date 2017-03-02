@@ -37,3 +37,12 @@ Metrics/BlockLength:
 Metrics/LineLength:
   IgnoredPatterns:
     - '\w*it.+do'
+
+Style/Lambda:
+    Enabled: false
+
+Metrics/MethodLength:
+  Max: 15
+
+Metrics/AbcSize:
+  Max: 25
