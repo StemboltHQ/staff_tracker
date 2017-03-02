@@ -18,7 +18,7 @@
 
   <p>
     <%= f.label :event %><br>
-    <%= collection_select(:presentation, :event_id, Event.all, :id, :name, prompt: true) %>
+    <%= collection_select(:presentation, :event_id, Event.upcoming, :id, :name, prompt: true) %>
   </p>
 
   <p>
