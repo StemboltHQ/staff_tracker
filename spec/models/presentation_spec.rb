@@ -10,10 +10,14 @@ RSpec.describe Presentation, type: :model do
 
     it { is_expected.to validate_presence_of :topic }
     it { is_expected.to validate_presence_of :duration }
-    it { is_expected.to validate_numericality_of :duration }
 
     it { is_expected.to belong_to :person }
     it { is_expected.to belong_to :event }
+
+    it 'is expected to validate duration is between 0 and 15' do
+      expect(subject).to validate_numericality_of(:duration)
+        .is_greater_than(0).is_less_than_or_equal_to(15)
+    end
 
     it { is_expected.to be_valid }
 
