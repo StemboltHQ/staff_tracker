@@ -46,3 +46,4 @@ Metrics/MethodLength:
 
 Metrics/AbcSize:
   Max: 25
+  Enabled: false

@@ -57,4 +57,29 @@ RSpec.describe Event, type: :model do
       it { is_expected.to_not include(event_past) }
     end
   end
+
+  describe '.requiring_notification' do
+    subject(:events_requiring_notification) do
+      described_class.requiring_notification
+    end
+    context 'when there are events aligning with the NOTIFICATION_PERIOD' do
+      let(:required_notif) do
+        FactoryGirl.create(:event, :requiring_notification)
+      end
+      let(:unrequired_notif) do
+        FactoryGirl.create(:event, :not_requiring_notification)
+      end
+      it 'returns an array of Events requiring notification' do
+        expect(events_requiring_notification).to include(required_notif)
+      end
+      it 'doesnt include Events that arent requiring notification' do
+        expect(events_requiring_notification).not_to include(unrequired_notif)
+      end
+    end
+    context 'when there are no events aligning with the NOTIFICATION_PERIOD' do
+      it 'returns an empty array' do
+        expect(events_requiring_notification).to be_empty
+      end
+    end
+  end
 end

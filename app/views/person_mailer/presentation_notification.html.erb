@@ -1,0 +1,12 @@
+<DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Greetings <%= @presenter.first_name if @presenter.first_name %></h1>
+    <p>This is a reminder for your upcoming presentation on
+      <%= @event_date %>
+    </p>
+  </body>
+</html>
