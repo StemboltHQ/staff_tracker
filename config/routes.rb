@@ -6,8 +6,8 @@ Rails.application.routes.draw do
 
   resources :sessions, only: [:destroy]
   resources :people
-  resources :events, only: [:show, :create, :new, :upcoming] do
-    get "/upcoming-events", to: 'events#upcoming', on: :collection
+  resources :events, only: [:show, :create, :new] do
+    get 'upcoming', to: 'events#upcoming', on: :collection
   end
   resources :presentations, only: [:show, :create, :new]
 
