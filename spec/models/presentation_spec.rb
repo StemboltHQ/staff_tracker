@@ -6,8 +6,6 @@ RSpec.describe Presentation, type: :model do
   let(:event)  { FactoryGirl.create(:event) }
 
   describe 'validate model' do
-    subject { FactoryGirl.create(:presentation) }
-
     it { is_expected.to validate_presence_of :topic }
     it { is_expected.to validate_presence_of :duration }
 
@@ -18,8 +16,6 @@ RSpec.describe Presentation, type: :model do
       expect(subject).to validate_numericality_of(:duration)
         .is_greater_than(0).is_less_than_or_equal_to(15)
     end
-
-    it { is_expected.to be_valid }
 
     describe 'person and presenter validation' do
       subject { described_class.new(presentation) }
