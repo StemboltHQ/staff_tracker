@@ -14,4 +14,8 @@ class Event < ApplicationRecord
   scope :requiring_notification, -> do
     where('date = ?', Date.current - NOTIFICATION_PERIOD)
   end
+
+  def duration
+    presentations.map(&:duration).sum
+  end
 end
