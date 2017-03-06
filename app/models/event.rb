@@ -1,6 +1,7 @@
 # app/models/event.rb
 class Event < ApplicationRecord
   NOTIFICATION_PERIOD = 1.day
+  MAXIMUM_DURATION = Figaro.env.maximum_event_duration.to_i
   has_many :presentations
 
   validates :date,
