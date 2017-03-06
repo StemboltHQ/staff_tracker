@@ -27,7 +27,7 @@ FactoryGirl.define do
   factory :presentation do
     topic 'Being Awesome'
     description 'How to be awesome and stuff'
-    duration 900
+    duration 15
     person
     event
 
