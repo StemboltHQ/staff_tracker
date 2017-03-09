@@ -82,4 +82,33 @@ RSpec.describe Event, type: :model do
       end
     end
   end
+
+  describe '.duration' do
+    subject(:event_duration) { event.duration }
+    context 'when there are no presentations assigned' do
+      let(:event) { FactoryGirl.build(:event) }
+      it 'returns zero' do
+        expect(event_duration).to eq(0)
+      end
+    end
+    context 'when there is one presentation assigned' do
+      let(:event) { FactoryGirl.build(:event, presentations: [presentation]) }
+      let(:presentation) do
+        FactoryGirl.build(:presentation)
+      end
+      it 'returns the assigned presentations duration' do
+        expect(event_duration).to eq(presentation.duration)
+      end
+    end
+    context 'when there are multiple presentations assigned' do
+      let(:number) { 3 }
+      let(:event) { FactoryGirl.build(:event, presentations: presentations) }
+      let!(:presentations) do
+        build_list(:presentation, number)
+      end
+      it 'returns the assigned presentations duration' do
+        expect(event_duration).to eq(presentations.first.duration * number)
+      end
+    end
+  end
 end

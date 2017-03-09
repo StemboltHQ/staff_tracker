@@ -80,6 +80,34 @@ RSpec.describe Presentation, type: :model do
     end
   end
 
+  describe 'associated event has available time validation' do
+    subject { described_class.new(presentation) }
+
+    context 'the associated event has time for the presentation' do
+      let(:presentation) do
+        FactoryGirl.attributes_for(
+          :presentation,
+          event_id: event.id,
+          presenter: 'gucci god',
+          duration: 1
+        )
+      end
+      it { is_expected.to be_valid }
+    end
+
+    context 'the assoicated event doesnt have time for the presentation' do
+      let(:presentation) do
+        FactoryGirl.attributes_for(
+          :presentation,
+          event_id: event.id,
+          presenter: 'gucci god',
+          duration: Event::MAXIMUM_DURATION + 1
+        )
+      end
+      it { is_expected.not_to be_valid }
+    end
+  end
+
   describe 'presenter_name' do
     context 'when presenter is not present' do
       subject { FactoryGirl.create(:presentation) }
