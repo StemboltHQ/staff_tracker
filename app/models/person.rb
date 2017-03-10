@@ -1,5 +1,7 @@
 class Person < ApplicationRecord
   has_many :presentations
+  has_many :person_roles
+  has_many :roles, through: :person_roles
 
   before_save do
     email.downcase!
@@ -22,4 +24,8 @@ class Person < ApplicationRecord
             uniqueness: { case_sensitive: false }
 
   has_secure_password
+
+  def admin?
+    roles.detect(&:admin?).present?
+  end
 end
