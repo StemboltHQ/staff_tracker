@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170223213553) do
+ActiveRecord::Schema.define(version: 20170306230433) do
 
   create_table "events", force: :cascade do |t|
     t.date     "date",       null: false
@@ -26,8 +26,8 @@ ActiveRecord::Schema.define(version: 20170223213553) do
     t.string   "email"
     t.date     "date_of_birth"
     t.string   "gender"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.string   "password_digest"
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
@@ -54,6 +54,12 @@ ActiveRecord::Schema.define(version: 20170223213553) do
     t.integer  "event_id"
     t.index ["event_id"], name: "index_presentations_on_event_id"
     t.index ["person_id"], name: "index_presentations_on_person_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.integer  "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "staff", force: :cascade do |t|
