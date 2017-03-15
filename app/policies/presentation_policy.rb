@@ -1,0 +1,1 @@
+class PresentationPolicy < ApplicationPolicy; end
