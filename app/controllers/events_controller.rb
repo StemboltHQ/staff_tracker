@@ -6,6 +6,7 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
+    authorize @event
   end
 
   def upcoming
@@ -14,6 +15,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+    authorize @event
 
     if @event.save
       flash[:notice] = 'Event was successfully created.'
