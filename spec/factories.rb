@@ -8,6 +8,10 @@ FactoryGirl.define do
     password_confirmation 'abc123'
     date_of_birth Date.new(1970, 1, 1)
     gender 'Computer'
+
+    trait :admin do
+      roles { build_list(:role, 1, :admin) }
+    end
   end
 
   factory :event do
@@ -33,6 +37,12 @@ FactoryGirl.define do
 
     trait :requiring_notification do
       event { FactoryGirl.build(:event, :requiring_notification) }
+    end
+  end
+
+  factory :role do
+    trait :admin do
+      name :admin
     end
   end
 end

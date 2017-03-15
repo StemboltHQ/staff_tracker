@@ -9,6 +9,7 @@ RSpec.describe Person, type: :model do
     it { is_expected.to validate_uniqueness_of(:email).case_insensitive }
     it { is_expected.to have_secure_password }
     it { is_expected.to be_valid }
+    it { is_expected.to have_many(:roles) }
 
     it "expects first_name to be longer than 1 character" do
       subject.first_name = "A"
@@ -24,6 +25,22 @@ RSpec.describe Person, type: :model do
     it "expects gender to be stored lower-case" do
       subject.save
       expect(subject.gender).to eq(subject.gender.downcase)
+    end
+  end
+
+  describe 'admin?' do
+    subject { person.admin? }
+    context 'the person has an admin role assigned' do
+      let(:person) { FactoryGirl.create(:person, :admin) }
+      it 'returns true' do
+        expect(subject).to eq(true)
+      end
+    end
+    context 'the person doesnt have an admin role assigned' do
+      let(:person) { FactoryGirl.create(:person) }
+      it 'returns false' do
+        expect(subject).to eq(false)
+      end
     end
   end
 end
