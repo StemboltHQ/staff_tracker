@@ -155,6 +155,8 @@ GEM
       pry (>= 0.9.10)
     public_suffix (2.0.5)
     puma (3.7.0)
+    pundit (1.1.0)
+      activesupport (>= 3.0.0)
     rack (2.0.1)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -286,6 +288,7 @@ DEPENDENCIES
   omniauth-google-oauth2 (~> 0.2.1)
   pry-rails
   puma (~> 3.0)
+  pundit
   rails (~> 5.0.1)
   rails-controller-testing
   rspec-rails (~> 3.5)

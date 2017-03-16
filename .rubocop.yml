@@ -47,3 +47,6 @@ Metrics/MethodLength:
 Metrics/AbcSize:
   Max: 25
   Enabled: false
+
+Style/Alias:
+  EnforcedStyle: prefer_alias_method

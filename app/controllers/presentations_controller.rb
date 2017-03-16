@@ -5,10 +5,12 @@ class PresentationsController < ApplicationController
 
   def new
     @presentation = Presentation.new
+    authorize @presentation
   end
 
   def create
     @presentation = Presentation.new(presentation_params)
+    authorize @presentation
 
     if @presentation.save
       flash[:notice] = 'Presentation was successfully created'
