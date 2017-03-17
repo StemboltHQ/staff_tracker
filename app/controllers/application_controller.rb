@@ -7,5 +7,9 @@ class ApplicationController < ActionController::Base
     @current_person ||= Person.find(session[:person_id]) if session[:person_id]
   end
 
+  def authenticate_person
+    redirect_to sign_in_path unless current_person
+  end
+
   alias_method :current_user, :current_person
 end
