@@ -37,7 +37,15 @@ RSpec.describe EventsController, type: :controller do
         end
       end
     end
+
+    describe 'GET #new' do
+      subject { get :new }
+
+      it { is_expected.to render_template(:new) }
+      it { is_expected.to be_successful }
+    end
   end
+
   context 'the current person is a non-admin' do
     let(:non_admin) { FactoryGirl.build(:person) }
 
@@ -50,6 +58,29 @@ RSpec.describe EventsController, type: :controller do
       it 'throws a not authorized error' do
         expect { subject }.to raise_error(Pundit::NotAuthorizedError)
       end
+    end
+
+    describe 'GET #new' do
+      subject { get :new }
+
+      it 'throws a not authorized error' do
+        expect { subject }.to raise_error(Pundit::NotAuthorizedError)
+      end
+    end
+
+    describe 'GET #upcoming' do
+      subject { get :upcoming }
+
+      it { is_expected.to render_template(:upcoming) }
+      it { is_expected.to be_successful }
+    end
+
+    describe 'GET #show' do
+      subject { get :show, params: { id: event.id } }
+      let(:event) { FactoryGirl.create(:event) }
+
+      it { is_expected.to render_template(:show) }
+      it { is_expected.to be_successful }
     end
   end
 end

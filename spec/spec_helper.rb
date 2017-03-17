@@ -21,7 +21,11 @@ if ENV['COVERAGE']
   require 'simplecov'
   require 'simplecov-rcov'
 
-  SimpleCov.start 'rails'
+  SimpleCov.profiles.define 'no_application_cable_coverage' do
+    load_profile 'rails'
+    add_filter 'app/channels'
+  end
+  SimpleCov.start 'no_application_cable_coverage'
   SimpleCov.formatters = [
     SimpleCov::Formatter::HTMLFormatter,
     SimpleCov::Formatter::RcovFormatter
