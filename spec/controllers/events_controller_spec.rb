@@ -4,7 +4,7 @@ RSpec.describe EventsController, type: :controller do
   context 'the current person is an admin' do
     let(:admin_person) { FactoryGirl.build(:person, :admin) }
 
-    before { mock_pundit_user_as(admin_person) }
+    before { sign_in_as(admin_person) }
 
     describe 'POST #create' do
       subject { post :create, params: { event: params } }
@@ -49,7 +49,7 @@ RSpec.describe EventsController, type: :controller do
   context 'the current person is a non-admin' do
     let(:non_admin) { FactoryGirl.build(:person) }
 
-    before { mock_pundit_user_as(non_admin) }
+    before { sign_in_as(non_admin) }
 
     describe 'POST #create' do
       subject { post :create, params: { event: params } }

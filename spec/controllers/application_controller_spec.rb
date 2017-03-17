@@ -36,7 +36,7 @@ RSpec.describe ApplicationController, type: :controller do
     subject { get :index }
 
     context 'when the person is signed in' do
-      before { mock_pundit_user_as(person) }
+      before { sign_in_as(person) }
       let(:person) { FactoryGirl.build(:person) }
 
       it { is_expected.to_not redirect_to(sign_in_path) }
