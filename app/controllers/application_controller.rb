@@ -11,10 +11,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_person
-    unless current_person
-      redirect_to sign_in_path
-      return false
-    end
+    redirect_to sign_in_path unless current_person
   end
 
   alias_method :current_user, :current_person

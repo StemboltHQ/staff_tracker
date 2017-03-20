@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe ApplicationController, type: :controller do
   controller(described_class) do
-      before_action :authenticate_person
+    before_action :authenticate_person
     def index
       current_user
 
@@ -11,7 +11,7 @@ RSpec.describe ApplicationController, type: :controller do
   end
 
   describe '.current_person' do
-    subject { get :index  }
+    subject { get :index }
 
     context 'when a session is active' do
       let(:person) { FactoryGirl.create(:person) }
