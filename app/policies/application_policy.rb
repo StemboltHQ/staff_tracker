@@ -7,7 +7,7 @@ class ApplicationPolicy
   end
 
   def create?
-    person.admin?
+    person.present? && person.admin?
   end
 
   def new?
@@ -15,7 +15,7 @@ class ApplicationPolicy
   end
 
   def update?
-    person.admin?
+    person.present? && person.admin?
   end
 
   def edit?
@@ -23,6 +23,6 @@ class ApplicationPolicy
   end
 
   def destroy?
-    person.admin?
+    person.present? && person.admin?
   end
 end
