@@ -1,0 +1,44 @@
+a {
+  color: $color-link;
+}
+
+h1 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: 0 0 1.8rem;
+}
+
+h2 {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+h3 {
+  font-size: 1.6rem;
+  font-weight: normal;
+  margin: 0;
+}
+
+li {
+  padding-left: 1rem;
+  position: relative;
+
+  &::before {
+    content: "\25cf";
+    font-size: 0.8rem;
+    left: 0;
+    line-height: 3.125;
+    position: absolute;
+  }
+}
+
+p {
+  margin: 2.5rem 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+

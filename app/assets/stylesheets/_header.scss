@@ -1,0 +1,33 @@
+header {
+  margin: 24px auto 0;
+}
+
+.header-links {
+  text-align: center;
+
+  a {
+    display: inline-block;
+    margin: 10px;
+    text-decoration: none;
+  }
+
+  li {
+    display: inline;
+    padding: 0;
+
+    &::before {
+      content: none;
+    }
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+}
+
+.header-logo {
+  display: block;
+  height: auto;
+  margin: 0 auto 23px;
+  width: 249px;
+}
