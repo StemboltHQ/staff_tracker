@@ -1,5 +1,6 @@
-# app/controllers/events_controller.rb
 class EventsController < ApplicationController
+  before_action :authenticate_person
+
   def show
     @event = Event.find(params[:id])
   end
