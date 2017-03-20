@@ -1,4 +1,6 @@
 class PresentationsController < ApplicationController
+  before_action :authenticate_person
+
   def show
     @presentation = Presentation.find(params[:id])
   end
