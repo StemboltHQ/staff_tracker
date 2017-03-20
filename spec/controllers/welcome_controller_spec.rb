@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe WelcomeController, type: :controller do
+  before { sign_in_as(person) }
+  let(:person) { FactoryGirl.build(:person) }
+
   describe 'GET #index' do
     subject { get :index }
 
