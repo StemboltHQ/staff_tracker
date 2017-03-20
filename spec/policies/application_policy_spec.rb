@@ -8,6 +8,20 @@ RSpec.describe ApplicationPolicy, type: :model do
     :edit?,
     :destroy?
   ]
+
+  context 'the person is not signed in' do
+    subject { ApplicationPolicy.new(nil_person, 'any object') }
+    let(:nil_person) { nil }
+
+    policy_methods.each do |method|
+      describe method.to_s do
+        it 'returns false' do
+          expect(subject.send(method)).to eq(false)
+        end
+      end
+    end
+  end
+
   context 'the person is an admin' do
     subject { ApplicationPolicy.new(admin, 'any object') }
     let(:admin) { FactoryGirl.build(:person, :admin) }
