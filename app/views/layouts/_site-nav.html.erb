@@ -1,0 +1,18 @@
+<header>
+  <ul>
+    <li><%= link_to 'Staff Tracker', root_path %></li>
+    <li><%= link_to 'People', people_path %></li>
+  </ul>
+  <ul>
+    <% if current_person %>
+      <li>
+        Signed in as <strong><%= current_person.first_name %></strong>
+        <%= link_to 'Sign out', signout_path %>
+      </li>
+    <% else %>
+      <li>
+        <%= link_to 'Sign in with Google', '/auth/google_oauth2' %>
+      </li>
+    </ul>
+  <% end %>
+</header>
