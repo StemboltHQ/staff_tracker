@@ -18,14 +18,7 @@
 
   <p>
     <%= f.label :event %><br>
-    <%= collection_select(:presentation, :event_id, Event.all, :id, :name, prompt: true) %>
-  </p>
-
-  <p>
-    <%= f.label :presenter %><br>
-    <%= collection_select(:presentation, :person_id, Person.all, :id, :first_name, include_blank: true) %>
-    or
-    <%= f.text_field :presenter, placeholder: 'Enter guest name' %>
+    <%= f.collection_select(:event_id, Event.upcoming, :id, :name, prompt: true) %>
   </p>
 
   <p>
