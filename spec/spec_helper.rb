@@ -113,5 +113,7 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 
+include ActiveSupport::Testing::TimeHelpers
+
 # Include all support files
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |file| require file }
