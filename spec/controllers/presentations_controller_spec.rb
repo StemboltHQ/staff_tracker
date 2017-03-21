@@ -1,15 +1,23 @@
 require 'rails_helper'
 
 RSpec.describe PresentationsController, type: :controller do
-  context 'the current person is an admin' do
-    let(:admin_person) { FactoryGirl.build(:person, :admin) }
+  context 'the current person is a non-admin' do
+    let(:non_admin) { FactoryGirl.build(:person) }
 
-    before { mock_pundit_user_as(admin_person) }
+    before { mock_pundit_user_as(non_admin) }
 
     describe 'GET #new' do
       subject { get :new }
 
       it { is_expected.to render_template :new }
+      it { is_expected.to be_successful }
+    end
+
+    describe 'GET #show' do
+      subject { get :show, params: { id: presentation.id } }
+      let!(:presentation) { FactoryGirl.create(:presentation) }
+
+      it { is_expected.to render_template :show }
       it { is_expected.to be_successful }
     end
 
@@ -47,36 +55,6 @@ RSpec.describe PresentationsController, type: :controller do
         it 'is expected to not change presentation count' do
           expect { subject }.to_not change(Presentation, :count)
         end
-      end
-    end
-  end
-  context 'the current person is a non-admin' do
-    let(:non_admin) { FactoryGirl.build(:person) }
-
-    before { mock_pundit_user_as(non_admin) }
-
-    describe 'GET #new' do
-      subject { get :new }
-
-      it 'throws a not authorized error' do
-        expect { subject }.to raise_error(Pundit::NotAuthorizedError)
-      end
-    end
-
-    describe 'GET #show' do
-      subject { get :show, params: { id: presentation.id } }
-      let!(:presentation) { FactoryGirl.create(:presentation) }
-
-      it { is_expected.to render_template :show }
-      it { is_expected.to be_successful }
-    end
-
-    describe 'POST #create' do
-      subject { post :create, params: { presentation: params } }
-      let(:params) { FactoryGirl.attributes_for(:presentation) }
-
-      it 'throws a not authorized error' do
-        expect { subject }.to raise_error(Pundit::NotAuthorizedError)
       end
     end
   end
