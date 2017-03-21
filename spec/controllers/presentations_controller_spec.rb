@@ -22,7 +22,6 @@ RSpec.describe PresentationsController, type: :controller do
         let(:params) do
           FactoryGirl.attributes_for(
             :presentation,
-            person_id: person.id,
             event_id: event.id
           )
         end
@@ -55,14 +54,6 @@ RSpec.describe PresentationsController, type: :controller do
 
     before { mock_pundit_user_as(non_admin) }
 
-    describe 'GET #new' do
-      subject { get :new }
-
-      it 'throws a not authorized error' do
-        expect { subject }.to raise_error(Pundit::NotAuthorizedError)
-      end
-    end
-
     describe 'GET #show' do
       subject { get :show, params: { id: presentation.id } }
       let!(:presentation) { FactoryGirl.create(:presentation) }
@@ -70,13 +61,25 @@ RSpec.describe PresentationsController, type: :controller do
       it { is_expected.to render_template :show }
       it { is_expected.to be_successful }
     end
+  end
+
+  context 'the current person is not signed in' do
+    let(:nil_person) { nil }
+
+    before { mock_pundit_user_as(nil_person) }
 
     describe 'POST #create' do
       subject { post :create, params: { presentation: params } }
-      let(:params) { FactoryGirl.attributes_for(:presentation) }
+      let(:event) { FactoryGirl.create(:event) }
+      let(:params) do
+        FactoryGirl.attributes_for(
+          :presentation,
+          event_id: event.id
+        )
 
-      it 'throws a not authorized error' do
-        expect { subject }.to raise_error(Pundit::NotAuthorizedError)
+        it 'throws a not authorized error' do
+          expect { subject }.to raise_error(Pundit::NotAuthorizedError)
+        end
       end
     end
   end

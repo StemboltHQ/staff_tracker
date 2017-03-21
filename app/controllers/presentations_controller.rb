@@ -9,7 +9,9 @@ class PresentationsController < ApplicationController
   end
 
   def create
-    @presentation = Presentation.new(presentation_params)
+    @presentation = Presentation.new(presentation_params).tap do |presentation|
+      presentation.person = current_person
+    end
     authorize @presentation
 
     if @presentation.save
@@ -28,7 +30,6 @@ class PresentationsController < ApplicationController
       :topic,
       :duration,
       :description,
-      :person_id,
       :event_id
     )
   end
