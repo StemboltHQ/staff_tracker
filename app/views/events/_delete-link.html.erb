@@ -1,0 +1,10 @@
+<%=
+  link_to 'Delete', event_path(event),
+  method: :delete,
+  data:
+    if event.presentations.any?
+      { confirm: 'Are you sure? Deleting this event will delete all associated presentations.' }
+    else
+      { confirm: 'Are you sure?' }
+    end
+%>
