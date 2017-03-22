@@ -2,7 +2,7 @@
 class Event < ApplicationRecord
   NOTIFICATION_PERIOD = 1.day
   MAXIMUM_DURATION = Figaro.env.maximum_event_duration.to_i
-  has_many :presentations
+  has_many :presentations, dependent: :destroy
 
   validates :date,
             presence: true
