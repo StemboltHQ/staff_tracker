@@ -76,6 +76,17 @@ RSpec.describe EventsController, type: :controller do
       end
     end
 
+    describe 'DELETE #destroy' do
+      let!(:event) { FactoryGirl.create(:event) }
+      subject { delete :destroy, params: { id: event.id } }
+
+      it { is_expected.to redirect_to events_path }
+
+      it 'changes event count by -1' do
+        expect { subject }.to change(Event, :count).by(-1)
+      end
+    end
+
     describe 'GET #new' do
       subject { get :new }
 
@@ -102,6 +113,15 @@ RSpec.describe EventsController, type: :controller do
       subject { patch :update, params: { id: event.id, event: attr } }
       let(:event) { FactoryGirl.create(:event) }
       let(:attr) { { name: 'New Name' } }
+
+      it 'throws a not authorized error' do
+        expect { subject }.to raise_error(Pundit::NotAuthorizedError)
+      end
+    end
+
+    describe 'DELETE #destroy' do
+      let(:event) { FactoryGirl.create(:event) }
+      subject { delete :destroy, params: { id: event.id } }
 
       it 'throws a not authorized error' do
         expect { subject }.to raise_error(Pundit::NotAuthorizedError)
