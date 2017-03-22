@@ -46,6 +46,36 @@ RSpec.describe EventsController, type: :controller do
       end
     end
 
+    describe 'PATCH #update' do
+      let(:event) { FactoryGirl.create(:event) }
+      subject { patch :update, params: { id: event.id, event: attr } }
+
+      context 'changing name ' do
+        let(:attr) { { name: 'New Name' } }
+
+        it { is_expected.to redirect_to event }
+
+        it 'should update event' do
+          expect { subject }
+            .to change { event.reload.name }
+            .from('Show & Tell')
+            .to('New Name')
+        end
+      end
+
+      context 'invalid attributes' do
+        let(:attr) { { name: nil } }
+
+        it { is_expected.to render_template :edit }
+
+        it 'shouldn\'t update event' do
+          expect { subject }
+            .to_not change { event.reload.name }
+            .from('Show & Tell')
+        end
+      end
+    end
+
     describe 'GET #new' do
       subject { get :new }
 
@@ -62,6 +92,16 @@ RSpec.describe EventsController, type: :controller do
     describe 'POST #create' do
       subject { post :create, params: { event: params } }
       let(:params) { FactoryGirl.attributes_for(:event) }
+
+      it 'throws a not authorized error' do
+        expect { subject }.to raise_error(Pundit::NotAuthorizedError)
+      end
+    end
+
+    describe 'PATCH #update' do
+      subject { patch :update, params: { id: event.id, event: attr } }
+      let(:event) { FactoryGirl.create(:event) }
+      let(:attr) { { name: 'New Name' } }
 
       it 'throws a not authorized error' do
         expect { subject }.to raise_error(Pundit::NotAuthorizedError)

@@ -30,6 +30,18 @@ class EventsController < ApplicationController
     end
   end
 
+  def update
+    @event = Event.find(params[:id])
+    authorize @event
+
+    if @event.update(event_params)
+      flash[:notice] = 'Event was successfully updated.'
+      redirect_to @event
+    else
+      render 'edit'
+    end
+  end
+
   private
 
   def event_params
