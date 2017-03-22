@@ -6,6 +6,14 @@ RSpec.describe EventsController, type: :controller do
 
     before { mock_pundit_user_as(admin_person) }
 
+    describe 'GET #edit' do
+      let(:event) { FactoryGirl.create(:event) }
+      subject { get :edit, params: { id: event.id } }
+
+      it { is_expected.to render_template :edit }
+      it { is_expected.to be_successful }
+    end
+
     describe 'POST #create' do
       subject { post :create, params: { event: params } }
 
@@ -62,6 +70,15 @@ RSpec.describe EventsController, type: :controller do
 
     describe 'GET #new' do
       subject { get :new }
+
+      it 'throws a not authorized error' do
+        expect { subject }.to raise_error(Pundit::NotAuthorizedError)
+      end
+    end
+
+    describe 'GET #edit' do
+      let(:event) { FactoryGirl.create(:event) }
+      subject { get :edit, params: { id: event.id } }
 
       it 'throws a not authorized error' do
         expect { subject }.to raise_error(Pundit::NotAuthorizedError)

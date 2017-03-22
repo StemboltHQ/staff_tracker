@@ -13,6 +13,11 @@ class EventsController < ApplicationController
     @events = Event.upcoming
   end
 
+  def edit
+    @event = Event.find(params[:id])
+    authorize @event
+  end
+
   def create
     @event = Event.new(event_params)
     authorize @event
