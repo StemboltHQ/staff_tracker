@@ -1,3 +1,5 @@
+<%= flash[:notice] %>
+
 <h1>Event: <%= @event.name %></h1>
 <dl>
   <dt>Name</dl>
@@ -9,3 +11,6 @@
   <dt>Location</dt>
   <dd><%= @event.location %></dd>
 </dl>
+
+<%= link_to 'Edit', edit_event_path(@event) %>
+<%= render partial: 'delete-link', locals: { event: @event } %>
