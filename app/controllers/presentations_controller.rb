@@ -47,6 +47,14 @@ class PresentationsController < ApplicationController
     end
   end
 
+  def destroy
+    @presentation = Presentation.find(params[:id])
+    authorize @presentation
+    @presentation.destroy!
+
+    redirect_to presentations_path
+  end
+
   private
 
   def admin_presentation_params
