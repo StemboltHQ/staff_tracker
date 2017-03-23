@@ -1,0 +1,29 @@
+<h1>Presentations:</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Topic</th>
+      <th>Description</th>
+      <th>Presenter</th>
+      <th>Duration</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @presentations.each do |presentation| %>
+      <tr>
+        <td><%= presentation.topic %></th>
+        <td>
+          <%= truncate(presentation.description, length: 50, omission: '...') %>
+        </td>
+        <td><%= presentation.presenter_name %></td>
+        <td><%= presentation.duration %> minute(s)</td>
+      </tr>
+    <% end %>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td><%= paginate @presentations %></td>
+    </tr>
+  </tfoot>
+</table>

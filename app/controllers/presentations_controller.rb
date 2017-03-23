@@ -1,4 +1,8 @@
 class PresentationsController < ApplicationController
+  def index
+    @presentations = Presentation.page(params[:page]).order(:created_at)
+  end
+
   def show
     @presentation = Presentation.find(params[:id])
   end
