@@ -26,7 +26,9 @@ class Presentation < ApplicationRecord
   end
 
   def associated_event_has_available_time
-    return if event.nil? || event.duration + duration <= Event::MAXIMUM_DURATION
+    return if duration.nil? ||
+              event.nil? ||
+              event.duration + duration <= Event::MAXIMUM_DURATION
 
     errors.add(
       :event,
