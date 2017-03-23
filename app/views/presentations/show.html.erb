@@ -10,3 +10,9 @@
   <dt>Date</dt>
   <dd><%= @presentation.event.date %></dd>
 </dl>
+
+<%= link_to 'Edit', edit_presentation_path(@presentation) %>
+<%= link_to 'Delete', presentation_path(@presentation),
+  method: :delete,
+  data: { confirm: 'Are you sure?' } %>
+
