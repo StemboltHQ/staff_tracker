@@ -1,24 +1,27 @@
 <%= form_for @presentation do |f| %>
-  <%= render 'errors' %>
 
   <p>
     <%= f.label :topic %><br>
     <%= f.text_field :topic %>
+    <%= f.error_message_for :topic %>
   </p>
 
   <p>
     <%= f.label :description %><br>
     <%= f.text_field :description %>
+    <%= f.error_message_for :description %>
   </p>
 
   <p>
     <%= f.label :duration %><br>
     <%= f.text_field :duration %> Minutes
+    <%= f.error_message_for :duration %>
   </p>
 
   <p>
     <%= f.label :event %><br>
     <%= f.collection_select(:event_id, Event.upcoming, :id, :name, prompt: true) %>
+    <%= f.error_message_for :event %>
   </p>
 
   <p>
