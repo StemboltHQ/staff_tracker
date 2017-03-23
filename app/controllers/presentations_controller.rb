@@ -35,6 +35,18 @@ class PresentationsController < ApplicationController
     end
   end
 
+  def update
+    @presentation = Presentation.find(params[:id])
+    authorize @presentation
+
+    if @presentation.update(admin_presentation_params)
+      flash[:notice] = 'Presentation was successfully updated.'
+      redirect_to @presentation
+    else
+      render 'edit'
+    end
+  end
+
   private
 
   def admin_presentation_params
