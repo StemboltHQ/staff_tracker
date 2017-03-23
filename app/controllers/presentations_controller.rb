@@ -12,6 +12,11 @@ class PresentationsController < ApplicationController
     authorize @presentation
   end
 
+  def edit
+    @presentation = Presentation.find(params[:id])
+    authorize @presentation
+  end
+
   def create
     if current_person && current_person.admin?
       @presentation = Presentation.new(admin_presentation_params)
