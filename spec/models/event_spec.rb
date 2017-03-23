@@ -2,6 +2,16 @@
 require 'rails_helper'
 
 RSpec.describe Event, type: :model do
+  describe 'Event associations' do
+    subject { described_class.reflect_on_association(:presentations) }
+    it 'has many presentations' do
+      expect(subject.macro).to eq :has_many
+    end
+    it 'destroys dependents' do
+      expect(subject.options[:dependent]) .to eq(:destroy)
+    end
+  end
+
   subject { described_class.new(event) }
 
   describe 'valid model' do

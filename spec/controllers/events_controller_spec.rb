@@ -6,6 +6,14 @@ RSpec.describe EventsController, type: :controller do
 
     before { mock_pundit_user_as(admin_person) }
 
+    describe 'GET #edit' do
+      let(:event) { FactoryGirl.create(:event) }
+      subject { get :edit, params: { id: event.id } }
+
+      it { is_expected.to render_template :edit }
+      it { is_expected.to be_successful }
+    end
+
     describe 'POST #create' do
       subject { post :create, params: { event: params } }
 
@@ -38,6 +46,47 @@ RSpec.describe EventsController, type: :controller do
       end
     end
 
+    describe 'PATCH #update' do
+      let(:event) { FactoryGirl.create(:event) }
+      subject { patch :update, params: { id: event.id, event: attr } }
+
+      context 'changing name ' do
+        let(:attr) { { name: 'New Name' } }
+
+        it { is_expected.to redirect_to event }
+
+        it 'should update event' do
+          expect { subject }
+            .to change { event.reload.name }
+            .from('Show & Tell')
+            .to('New Name')
+        end
+      end
+
+      context 'invalid attributes' do
+        let(:attr) { { name: nil } }
+
+        it { is_expected.to render_template :edit }
+
+        it 'shouldn\'t update event' do
+          expect { subject }
+            .to_not change { event.reload.name }
+            .from('Show & Tell')
+        end
+      end
+    end
+
+    describe 'DELETE #destroy' do
+      let!(:event) { FactoryGirl.create(:event) }
+      subject { delete :destroy, params: { id: event.id } }
+
+      it { is_expected.to redirect_to events_path }
+
+      it 'changes event count by -1' do
+        expect { subject }.to change(Event, :count).by(-1)
+      end
+    end
+
     describe 'GET #new' do
       subject { get :new }
 
@@ -60,12 +109,47 @@ RSpec.describe EventsController, type: :controller do
       end
     end
 
+    describe 'PATCH #update' do
+      subject { patch :update, params: { id: event.id, event: attr } }
+      let(:event) { FactoryGirl.create(:event) }
+      let(:attr) { { name: 'New Name' } }
+
+      it 'throws a not authorized error' do
+        expect { subject }.to raise_error(Pundit::NotAuthorizedError)
+      end
+    end
+
+    describe 'DELETE #destroy' do
+      let(:event) { FactoryGirl.create(:event) }
+      subject { delete :destroy, params: { id: event.id } }
+
+      it 'throws a not authorized error' do
+        expect { subject }.to raise_error(Pundit::NotAuthorizedError)
+      end
+    end
+
     describe 'GET #new' do
       subject { get :new }
 
       it 'throws a not authorized error' do
         expect { subject }.to raise_error(Pundit::NotAuthorizedError)
       end
+    end
+
+    describe 'GET #edit' do
+      let(:event) { FactoryGirl.create(:event) }
+      subject { get :edit, params: { id: event.id } }
+
+      it 'throws a not authorized error' do
+        expect { subject }.to raise_error(Pundit::NotAuthorizedError)
+      end
+    end
+
+    describe 'GET #index' do
+      subject { get :index }
+
+      it { is_expected.to render_template(:index) }
+      it { is_expected.to be_successful }
     end
 
     describe 'GET #upcoming' do

@@ -1,0 +1,8 @@
+<tr>
+  <td><%= event.name %></td>
+  <td>
+    <%= link_to 'Show', event_path(event) %>
+    <%= link_to 'Edit', edit_event_path(event) %>
+    <%= render partial: 'delete-link', locals: { event: event } %>
+  </td>
+</tr>
