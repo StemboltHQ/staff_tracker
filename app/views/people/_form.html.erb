@@ -1,39 +1,45 @@
 <%= form_for @person do |f| %>
-  <%= render 'errors' %>
 
   <p>
     <%= f.label :first_name %><br>
     <%= f.text_field :first_name %>
+    <%= f.error_message_for :first_name %>
   </p>
 
   <p>
     <%= f.label :last_name %><br>
     <%= f.text_field :last_name %>
+    <%= f.error_message_for :last_name %>
   </p>
 
   <p>
     <%= f.label :email %><br>
     <%= f.text_field :email %>
+    <%= f.error_message_for :email %>
   </p>
 
   <p>
     <%= f.label :password %><br>
     <%= f.password_field :password %>
+    <%= f.error_message_for :password %>
   </p>
 
   <p>
     <%= f.label :password_confirmation %><br>
     <%= f.password_field :password_confirmation %>
+    <%= f.error_message_for :password_confirmation %>
   </p>
 
   <p>
     <%= f.label :date_of_birth %><br>
     <%= f.date_field :date_of_birth %>
+    <%= f.error_message_for :date_of_birth %>
   </p>
 
   <p>
     <%= f.label :gender %><br>
     <%= f.text_field :gender %>
+    <%= f.error_message_for :gender %>
   <p>
 
   <p>
