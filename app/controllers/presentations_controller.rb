@@ -1,6 +1,8 @@
 class PresentationsController < ApplicationController
   def index
-    @presentations = Presentation.page(params[:page]).order(:created_at)
+    @presentations = Presentation.joins(:event)
+                                 .merge(Event.order(date: :desc))
+                                 .page(params[:page])
   end
 
   def show
