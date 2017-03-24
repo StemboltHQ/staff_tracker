@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :events do
     get 'upcoming', to: 'events#upcoming', on: :collection
   end
-  resources :presentations, except: [:edit, :update, :destroy]
+  resources :presentations
 
   root 'welcome#index'
 end

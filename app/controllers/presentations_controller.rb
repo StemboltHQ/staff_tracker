@@ -12,10 +12,19 @@ class PresentationsController < ApplicationController
     authorize @presentation
   end
 
+  def edit
+    @presentation = Presentation.find(params[:id])
+    authorize @presentation
+  end
+
   def create
-    @presentation = Presentation.new(presentation_params).tap do |presentation|
-      presentation.person = current_person
+    if current_person && current_person.admin?
+      @presentation = Presentation.new(admin_presentation_params)
+    else
+      create_params = presentation_params.merge(person: current_person)
+      @presentation = Presentation.new(create_params)
     end
+
     authorize @presentation
 
     if @presentation.save
@@ -26,7 +35,38 @@ class PresentationsController < ApplicationController
     end
   end
 
+  def update
+    @presentation = Presentation.find(params[:id])
+    authorize @presentation
+
+    if @presentation.update(admin_presentation_params)
+      flash[:notice] = 'Presentation was successfully updated.'
+      redirect_to @presentation
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @presentation = Presentation.find(params[:id])
+    authorize @presentation
+    @presentation.destroy!
+
+    redirect_to presentations_path
+  end
+
   private
+
+  def admin_presentation_params
+    params.require(:presentation).permit(
+      :presenter,
+      :topic,
+      :duration,
+      :description,
+      :event_id,
+      :person_id
+    )
+  end
 
   def presentation_params
     params.require(:presentation).permit(
