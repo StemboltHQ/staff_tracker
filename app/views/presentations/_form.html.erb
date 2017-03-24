@@ -1,3 +1,5 @@
+<% upcoming_events = Event.upcoming.map { |event| EventPresenter.new(event, self) } %>
+
 <%= form_for presentation do |f| %>
   <%= render 'errors' %>
 
@@ -18,7 +20,7 @@
 
   <p>
     <%= f.label :event %><br>
-    <%= f.collection_select(:event_id, Event.upcoming, :id, :name, prompt: true) %>
+    <%= f.collection_select(:event_id, upcoming_events, :id, :display_name, prompt: true) %>
   </p>
   <% if current_person && current_person.admin? %>
     <p>
