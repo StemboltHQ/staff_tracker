@@ -1,0 +1,5 @@
+<% if current_person %>
+  <%= link_to 'Sign up', new_presentation_path %>
+<% else %>
+  <%= link_to 'Sign in', '/auth/google_oauth2' %>
+<% end %>

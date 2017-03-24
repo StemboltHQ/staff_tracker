@@ -18,16 +18,12 @@
     <% else %>
       <p>
         There are currently no presentations for this event.
-        <%= link_to 'Sign up', new_presentation_path %>
+        <%= render 'shared/new_presentation_link' %>
         to teach some people something!
       </p>
     <% end %>
 
   <% else %>
-    <p>
-      There are no upcoming events.
-      <%= link_to 'Create one', new_event_path %>
-      to get the party started.
-    <p>
+    <p>There are no upcoming events.</p>
   <% end %>
 </div>
