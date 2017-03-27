@@ -10,7 +10,7 @@
 
       <ul>
         <% next_event.presentations.each do |presentation| %>
-          <li><%= "#{presentation.presenter} \u2013 #{presentation.topic}
+          <li><%= "#{presentation.presenter_name} \u2013 #{presentation.topic}
           (#{presentation.duration} min)" %></li>
         <% end %>
       </ul>
