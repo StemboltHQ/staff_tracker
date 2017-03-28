@@ -18,7 +18,7 @@
 
   <p>
     <%= f.label :event %><br>
-    <%= f.collection_select(:event_id, Event.upcoming, :id, :name, prompt: true) %>
+    <%= f.collection_select(:event_id, Event.upcoming, :id, :name, prompt: true, selected: @prepopulated_event ) %>
   </p>
   <% if current_person && current_person.admin? %>
     <p>
