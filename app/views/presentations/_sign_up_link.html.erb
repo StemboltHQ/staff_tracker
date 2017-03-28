@@ -1,0 +1,5 @@
+<%=
+  if event&.upcoming?
+    link_to 'Sign up', new_presentation_path(prepopulated_event: event.id)
+  end
+%>
