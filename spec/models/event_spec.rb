@@ -121,4 +121,23 @@ RSpec.describe Event, type: :model do
       end
     end
   end
+
+  describe '#upcoming?' do
+    subject { event.upcoming? }
+    context 'the event is in the future' do
+      let!(:event) do
+        FactoryGirl.create(:event, date: 1.hour.from_now)
+      end
+
+      it { is_expected.to eq(true) }
+    end
+
+    context 'the event is in the past' do
+      let!(:event) do
+        FactoryGirl.create(:event, date: -1.hours.from_now)
+      end
+
+      it { is_expected.to eq(false) }
+    end
+  end
 end

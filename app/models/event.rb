@@ -16,6 +16,10 @@ class Event < ApplicationRecord
     where('date = ?', Date.current - NOTIFICATION_PERIOD)
   end
 
+  def upcoming?
+    Event.upcoming.include?(self)
+  end
+
   def duration
     presentations.map(&:duration).sum
   end
