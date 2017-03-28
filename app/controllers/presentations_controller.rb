@@ -12,6 +12,7 @@ class PresentationsController < ApplicationController
   def new
     @presentation = Presentation.new
     authorize @presentation
+    @prepopulated_event = params[:prepopulated_event]
   end
 
   def edit
