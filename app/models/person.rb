@@ -5,7 +5,7 @@ class Person < ApplicationRecord
 
   before_save do
     email.downcase!
-    gender.downcase! if gender
+    gender&.downcase!
   end
 
   valid_email_regex = /.+@.+\..+/i
