@@ -1,38 +1,16 @@
 <% upcoming_events = Event.upcoming.map { |event| EventPresenter.new(event, self) } %>
+<%= simple_form_for presentation do |f| %>
 
-<%= form_for presentation do |f| %>
-  <%= render 'errors' %>
-
-  <p>
-    <%= f.label :topic %><br>
-    <%= f.text_field :topic %>
-  </p>
-
-  <p>
-    <%= f.label :description %><br>
-    <%= f.text_field :description %>
-  </p>
-
-  <p>
-    <%= f.label :duration %><br>
-    <%= f.text_field :duration %> Minutes
-  </p>
-
-  <p>
-    <%= f.label :event %><br>
-    <%= f.collection_select(:event_id, upcoming_events, :id, :display_name, prompt: true) %>
-  </p>
+  <%= f.input :topic %>
+  <%= f.input :description, as: :string %>
+  <%= f.input :duration, as: :numeric %>
+  <%= f.association :event, collection: upcoming_events %>
   <% if current_person && current_person.admin? %>
-    <p>
-      <%= f.label :presenter %><br>
-      <%= collection_select(:presentation, :person_id, Person.all, :id, :first_name, include_blank: true) %>
-      or
-      <%= f.text_field :presenter, placeholder: 'Enter guest name' %>
-    </p>
+    <%= f.label :presenter %>
+    <%= f.association :person, label_method: :first_name %>
+    or
+    <%= f.input :presenter, as: :string, placeholder: 'Enter guest name', label: false %>
   <% end %>
-
-  <p>
-    <%= f.submit %>
-  </p>
+  <%= f.button :submit %>
 
 <% end %>
