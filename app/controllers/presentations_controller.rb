@@ -12,7 +12,8 @@ class PresentationsController < ApplicationController
   end
 
   def new
-    @presentation = Presentation.new
+    @event = Event.find_by(id: params[:event_id]) || Event.new
+    @presentation = @event.presentations.build
     authorize @presentation
   end
 
