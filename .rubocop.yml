@@ -38,6 +38,7 @@ Metrics/BlockLength:
 Metrics/LineLength:
   IgnoredPatterns:
     - '\w*it.+do'
+    - '\w*context.+do'
 
 Style/Lambda:
     Enabled: false
