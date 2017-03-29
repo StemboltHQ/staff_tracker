@@ -3,6 +3,7 @@
 <% @events.each do |event| %>
   <div>
     <h2><%= link_to event.name, event_path(event) %></h2>
+    <%= render 'presentations/sign_up_link', event: event %>
 
     <ul>
       <li>Location: <%= event.location %></li>
@@ -21,7 +22,7 @@
                 </dl>
               </li>
             <% end %>
-          </ul> 
+          </ul>
         </li>
       <% end %>
     </ul>
