@@ -7,9 +7,10 @@ Rails.application.routes.draw do
   resources :sessions, only: [:destroy]
   resources :people
   resources :events do
+    resources :presentations, only: [:new, :edit]
     get 'upcoming', to: 'events#upcoming', on: :collection
   end
-  resources :presentations
+  resources :presentations, except: [:edit]
 
   root 'welcome#index'
 end
