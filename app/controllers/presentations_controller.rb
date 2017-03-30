@@ -1,8 +1,10 @@
 class PresentationsController < ApplicationController
   def index
-    @presentations = Presentation.joins(:event)
-                                 .merge(Event.order(date: :desc))
-                                 .page(params[:page])
+    @search = Presentation.ransack(params[:search])
+    @presentations = @search.result(distinct: true)
+                            .joins(:event)
+                            .merge(Event.order(date: :desc))
+                            .page(params[:page])
   end
 
   def show

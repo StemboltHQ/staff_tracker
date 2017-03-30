@@ -1,0 +1,8 @@
+<%= search_form_for @search do |f| %>
+  <p>
+    <%= f.label 'Filter by Presenter:' %>
+    <%= f.collection_select(:person_id_eq, Person.all, :id, :first_name, prompt: true) %>
+    <%= f.submit %>
+    <%= link_to 'Clear Filter', presentations_path %>
+  </p>
+<% end %>
