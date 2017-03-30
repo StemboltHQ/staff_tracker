@@ -1,0 +1,5 @@
+<%= render 'form', topic_request: @topic_request %>
+
+<% @topic_requests.each do |topic| %>
+  <p><%= topic.name %></p>
+<% end %>
