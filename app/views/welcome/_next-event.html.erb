@@ -18,7 +18,7 @@
     <% else %>
       <p>
         There are currently no presentations for this event.
-        <%= render 'shared/new_presentation_link' %>
+        <%= render 'shared/new_presentation_link', event: next_event %>
         to teach some people something!
       </p>
     <% end %>

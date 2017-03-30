@@ -1,5 +1,10 @@
-<% if current_person %>
-  <%= link_to 'Sign up', new_presentation_path %>
-<% else %>
-  <%= link_to 'Sign in', '/auth/google_oauth2' %>
-<% end %>
+<%=
+  case
+  when current_person.nil?
+    link_to 'Sign In', '/auth/google_oauth2'
+  when event
+    link_to 'Sign Up', new_event_presentation_path(event)
+  else
+    link_to 'Sign Up', new_presentation_path
+  end
+%>
