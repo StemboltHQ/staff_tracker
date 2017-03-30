@@ -10,7 +10,10 @@ Rails.application.routes.draw do
     resources :presentations, only: [:new, :edit]
     get 'upcoming', to: 'events#upcoming', on: :collection
   end
-  resources :presentations, except: [:edit]
+  resources :presentations, except: [:edit] do
+    get 'requests', to: 'topic_requests#index', on: :collection
+  end
+  resources :topic_requests, only: [:create]
 
   root 'welcome#index'
 end
