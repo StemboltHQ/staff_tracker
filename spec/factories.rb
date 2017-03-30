@@ -45,4 +45,8 @@ FactoryGirl.define do
       name :admin
     end
   end
+
+  factory :topic_request do
+    name 'You Might Not Need Timecop'
+  end
 end
