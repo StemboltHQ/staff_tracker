@@ -48,8 +48,9 @@ RSpec.describe PresentationsController, type: :controller do
   end
 
   describe 'GET #edit' do
-    subject { get :edit, params: { id: presentation.id } }
+    subject { get :edit, params: { id: presentation.id, event_id: event.id } }
     let(:presentation) { FactoryGirl.create(:presentation) }
+    let(:event) { FactoryGirl.create(:event, presentations: [presentation]) }
 
     context 'the current person is a non-admin' do
       before { mock_pundit_user_as(non_admin) }
