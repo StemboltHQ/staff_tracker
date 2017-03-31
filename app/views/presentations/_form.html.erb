@@ -1,11 +1,16 @@
-<% upcoming_events = Event.upcoming.map { |event| EventPresenter.new(event, self) } %>
+<%
+  presentation_presenter = PresentationPresenter.new(presentation, self)
+  associable_events = presentation_presenter.associable_events.map do |event|
+    EventPresenter.new(event, self)
+  end
+%>
 <%= simple_form_for presentation do |f| %>
 
   <%= f.input :topic %>
   <%= f.input :description, as: :string %>
   <%= f.input :duration, as: :numeric %>
   <%= f.association :event,
-    collection: upcoming_events,
+    collection: associable_events,
     prompt: true,
     selected: @event.id,
     label_method: :display_name
