@@ -12,5 +12,7 @@ Rails.application.routes.draw do
   end
   resources :presentations, except: [:edit]
 
+  namespace :admin do; end
+
   root 'welcome#index'
 end
