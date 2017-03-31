@@ -4,7 +4,7 @@
   <%= f.input :topic %>
   <%= f.input :description, as: :string %>
   <%= f.input :duration, as: :numeric %>
-  <%= f.association :event, collection: upcoming_events %>
+  <%= f.association :event, collection: upcoming_events, label_method: :display_name %>
   <% if current_person && current_person.admin? %>
     <%= f.label :presenter %>
     <%= f.association :person, label_method: :first_name %>
