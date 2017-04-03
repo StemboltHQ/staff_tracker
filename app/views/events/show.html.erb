@@ -10,5 +10,8 @@
   <dd><%= @event.location %></dd>
 </dl>
 
-<%= link_to 'Edit', edit_event_path(@event) %>
-<%= render partial: 'delete-link', locals: { event: @event } %>
+<%= link_to 'Edit', edit_event_path(@event) if policy(@event).edit? %>
+
+<% if policy(@event).destroy? %>
+  <%= render partial: 'delete-link', locals: { event: @event } %>
+<% end %>

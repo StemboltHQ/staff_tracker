@@ -11,8 +11,12 @@
   <dd><%= @presentation.event.date %></dd>
 </dl>
 
-<%= link_to 'Edit', edit_event_presentation_path(@presentation.event, @presentation) %>
-<%= link_to 'Delete', presentation_path(@presentation),
-  method: :delete,
-  data: { confirm: 'Are you sure?' } %>
+<% if policy(@presentation).edit? %>
+  <%= link_to 'Edit', edit_event_presentation_path(@presentation.event, @presentation) %>
+<% end %>
 
+<% if policy(@presentation).destroy? %>
+  <%= link_to 'Delete', presentation_path(@presentation),
+    method: :delete,
+    data: { confirm: 'Are you sure?' } %>
+<% end %>
