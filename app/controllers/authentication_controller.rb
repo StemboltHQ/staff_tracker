@@ -17,7 +17,7 @@ class AuthenticationController < ApplicationController
     random_password = SecureRandom.hex(10)
     {
       first_name: auth.extra.raw_info.given_name,
-      last_name: auth.extra.raw_info.last_name,
+      last_name: auth.extra.raw_info.family_name,
       email: auth.extra.raw_info.email,
       provider: auth.provider,
       uid: auth.uid,
