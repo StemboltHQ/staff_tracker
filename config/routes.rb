@@ -12,7 +12,11 @@ Rails.application.routes.draw do
   end
   resources :presentations, except: [:edit]
 
-  namespace :admin do; end
+  namespace :admin do
+    resources :people, only: [:index] do
+      put 'batch_update', to: 'people#batch_update', on: :collection
+    end
+  end
 
   root 'welcome#index'
 end
