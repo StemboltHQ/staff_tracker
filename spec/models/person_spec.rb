@@ -43,4 +43,39 @@ RSpec.describe Person, type: :model do
       end
     end
   end
+
+  describe '#toggle_admin!' do
+    subject { person.toggle_admin! }
+    context 'the person has an admin role assigned' do
+      let(:person) { FactoryGirl.create(:person, :admin) }
+      it 'toggles the person to a non admin' do
+        expect { subject }.to change { person.admin? }.from(true).to(false)
+      end
+    end
+
+    context 'the person doesnt have an admin role assigned' do
+      let(:person) { FactoryGirl.create(:person) }
+      context 'the admin role doesnt exist yet' do
+        it 'creates an admin role to assign' do
+          expect { subject }.to change { Role.where(name: 'admin').count }
+            .from(0)
+            .to(1)
+        end
+        it 'toggles the person to an admin' do
+          expect { subject }.to change { person.admin? }.from(false).to(true)
+        end
+      end
+
+      context 'the admin role already exists' do
+        before { FactoryGirl.create(:role, :admin) }
+        it 'doesnt create an extra admin role' do
+          expect { subject }.not_to change { Role.where(name: 'admin').count }
+            .from(1)
+        end
+        it 'toggles the person to an admin' do
+          expect { subject }.to change { person.admin? }.from(false).to(true)
+        end
+      end
+    end
+  end
 end

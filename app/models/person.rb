@@ -28,4 +28,14 @@ class Person < ApplicationRecord
   def admin?
     roles.detect(&:admin?).present?
   end
+
+  def toggle_admin!
+    admin_role = Role.find_or_create_by(name: 'admin')
+    if admin?
+      roles.delete(admin_role)
+    else
+      roles << admin_role
+    end
+    roles
+  end
 end
