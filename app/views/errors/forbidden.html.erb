@@ -1,0 +1,7 @@
+<div class='main'>
+  <h1>Woops!</h1>
+  <p>You do not have access to this page.</p>
+  <% if !current_person %>
+    <p>  This is most likely being caused because you are not <%= link_to 'signed in', '/auth/google_oauth2' %>.</p>
+  <% end %>
+</div>
