@@ -69,15 +69,6 @@ ActiveRecord::Schema.define(version: 20170406154040) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "staff", force: :cascade do |t|
-    t.string   "pod"
-    t.date     "started_at_company"
-    t.integer  "person_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.index ["person_id"], name: "index_staff_on_person_id"
-  end
-
   create_table "topic_requests", force: :cascade do |t|
     t.string   "name",       null: false
     t.datetime "created_at", null: false
