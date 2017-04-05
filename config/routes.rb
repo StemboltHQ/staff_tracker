@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'auth/failure', to: redirect('/')
   get 'signout', to: 'sessions#destroy', as: 'signout'
   get 'authentication/google', to: 'authentication#google'
+  match '/403', to: 'errors#forbidden', via: :all
 
   resources :sessions, only: [:destroy]
   resources :people
