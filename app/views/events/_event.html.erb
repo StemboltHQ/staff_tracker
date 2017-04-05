@@ -2,7 +2,10 @@
   <td><%= event.name %></td>
   <td>
     <%= link_to 'Show', event_path(event) %>
-    <%= link_to 'Edit', edit_event_path(event) %>
-    <%= render partial: 'delete-link', locals: { event: event } %>
+    <%= link_to('Edit', edit_event_path(event)) if policy(event).edit? %>
+
+    <% if policy(event).destroy? %>
+      <%= render partial: 'delete-link', locals: { event: event } %>
+    <% end %>
   </td>
 </tr>
