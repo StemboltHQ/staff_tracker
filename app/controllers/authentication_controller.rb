@@ -8,7 +8,7 @@ class AuthenticationController < ApplicationController
       new_person.attributes = google_params(auth)
     end
     session[:person_id] = person.id
-    redirect_to root_path
+    redirect_to request.env['omniauth.origin'] || root_path
   end
 
   private
