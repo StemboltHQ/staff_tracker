@@ -24,7 +24,7 @@ RSpec.describe ApplicationPolicy, type: :model do
 
   context 'the person is an admin' do
     subject { ApplicationPolicy.new(admin, 'any object') }
-    let(:admin) { FactoryGirl.build(:person, :admin) }
+    let(:admin) { FactoryGirl.create(:person, :admin) }
 
     policy_methods.each do |method|
       describe method.to_s do
@@ -37,7 +37,7 @@ RSpec.describe ApplicationPolicy, type: :model do
 
   context 'the person is a non admin' do
     subject { ApplicationPolicy.new(non_admin, 'any object') }
-    let(:non_admin) { FactoryGirl.build(:person) }
+    let(:non_admin) { FactoryGirl.create(:person) }
 
     policy_methods.each do |method|
       describe method.to_s do

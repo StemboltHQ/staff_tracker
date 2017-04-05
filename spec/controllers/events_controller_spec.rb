@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe EventsController, type: :controller do
   context 'the current person is an admin' do
-    let(:admin_person) { FactoryGirl.build(:person, :admin) }
+    let(:admin_person) { FactoryGirl.create(:person, :admin) }
 
     before { mock_pundit_user_as(admin_person) }
 
@@ -96,7 +96,7 @@ RSpec.describe EventsController, type: :controller do
   end
 
   context 'the current person is a non-admin' do
-    let(:non_admin) { FactoryGirl.build(:person) }
+    let(:non_admin) { FactoryGirl.create(:person) }
 
     before { mock_pundit_user_as(non_admin) }
 

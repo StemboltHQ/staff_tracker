@@ -1,6 +1,6 @@
 class PresentationPolicy < ApplicationPolicy
   def create?
-    person.present?
+    signed_in?(person)
   end
 
   def new?
@@ -8,7 +8,7 @@ class PresentationPolicy < ApplicationPolicy
   end
 
   def update?
-    (person&.admin? || person&.presentations&.include?(record)).present?
+    person.admin? || person.presentations.include?(record)
   end
 
   def edit?

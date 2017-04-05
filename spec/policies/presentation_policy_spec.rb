@@ -28,7 +28,7 @@ RSpec.describe PresentationPolicy, type: :model do
 
     context 'the person is an admin' do
       subject { described_class.new(admin, presentation) }
-      let(:admin) { FactoryGirl.build(:person, :admin) }
+      let(:admin) { FactoryGirl.create(:person, :admin) }
       let(:presentation) { FactoryGirl.build(:presentation) }
 
       describe '.update?' do
