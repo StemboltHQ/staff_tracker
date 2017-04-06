@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe PresentationsController, type: :controller do
   let(:nil_person) { nil }
-  let(:non_admin) { FactoryGirl.build(:person) }
-  let(:admin_person) { FactoryGirl.build(:person, :admin) }
+  let(:non_admin) { FactoryGirl.create(:person) }
+  let(:admin_person) { FactoryGirl.create(:person, :admin) }
 
   describe 'GET #index' do
     subject { get :index }

@@ -2,12 +2,12 @@ class ApplicationPolicy
   attr_reader :person, :record
 
   def initialize(person, record)
-    @person = person
+    @person = person || Person.new
     @record = record
   end
 
   def create?
-    person.present? && person.admin?
+    signed_in?(person) && person.admin?
   end
 
   def new?
@@ -15,7 +15,7 @@ class ApplicationPolicy
   end
 
   def update?
-    person.present? && person.admin?
+    signed_in?(person) && person.admin?
   end
 
   def edit?
@@ -23,6 +23,12 @@ class ApplicationPolicy
   end
 
   def destroy?
-    person.present? && person.admin?
+    signed_in?(person) && person.admin?
+  end
+
+  private
+
+  def signed_in?(person)
+    person.persisted?
   end
 end
