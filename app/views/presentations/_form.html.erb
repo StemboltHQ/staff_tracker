@@ -7,7 +7,7 @@
 <%= simple_form_for presentation do |f| %>
 
   <%= f.input :topic %>
-  <%= f.input :description, as: :string %>
+  <%= f.input :description %>
   <%= f.input :duration, as: :numeric %>
   <%= f.association :event,
     collection: associable_events,
