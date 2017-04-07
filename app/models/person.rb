@@ -2,6 +2,7 @@ class Person < ApplicationRecord
   has_many :presentations
   has_many :person_roles
   has_many :roles, through: :person_roles
+  accepts_nested_attributes_for :person_roles, allow_destroy: true
 
   before_save do
     email.downcase!

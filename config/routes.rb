@@ -16,5 +16,11 @@ Rails.application.routes.draw do
   end
   resources :topic_requests, only: [:create]
 
+  namespace :admin do
+    resources :people, only: [:index] do
+      put 'batch_update', to: 'people#batch_update', on: :collection
+    end
+  end
+
   root 'welcome#index'
 end
